@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head th:include="layout :: htmlhead"
+	th:with="title='Display an Object'">
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script> -->
+
+
+
+
+
+</head>
+
+<body>
+
+	<div th:replace="layout :: navbar">(navbar)</div>
+
+
+	<!-- 	<nav class="navbar navbar-default">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a class="navbar-brand">Select Browsing Options</a>
+			</div>
+			<div>
+				<ul class="nav navbar-nav">
+					<li><a href="http://localhost:9080/browse/listall/objects/1/10">View all Objects</a></li>
+					<li><a href="http://localhost:9080/browse/listall/roles">View all Roles</a></li>
+					<li><a href="http://localhost:9080/browse/listall/participants">View all Participants</a></li>
+					<li><a href="http://localhost:9080/browse/listall/images">View all Images</a></li>
+				</ul>
+
+			</div>
+		</div>
+	</nav> -->
+
+	<!-- End of Navbar -->
+
+	<div class="container-fluid">
+
+
+		<div class="jmtest">
+			<div class="row">
+				<div class="col-sm-1">
+					<b>Object ID:</b>
+				</div>
+				<div class="col-sm-1" id="objectidmodal" th:text="${object.id}"
+					th:value="${object.id}"></div>
+				<div class="col-sm-1">
+					<b>Date:</b>
+				</div>
+				<div class="col-sm-9" th:text="${object.date}"></div>
+			</div>
+
+			<div class="row">
+				<div class="table-responsive">
+					<table class="table">
+						<tr th:each="p : ${participations}">
+							<b><div class="col-sm-1" th:text="${p.role.role_display_name}"></div></b>
+							<div class="col-sm-5" th:text="${p.participant.person_name}"></div>
+						</tr>
+					</table>
+				</div>
+
+			</div>
+
+
+			<div class="row">
+				<div class="col-sm-1">
+					<b>Title:</b>
+				</div>
+				<div class="col-sm-5" th:text="${object.title}"></div>
+				<div class="col-sm-1">
+					<b>Medium:</b>
+				</div>
+				<div class="col-sm-5" th:text="${object.medium}"></div>
+			</div>
+			<div class="row">
+				<div class="col-sm-1">
+					<b>Credit Line:</b>
+				</div>
+				<div class="col-sm-5" th:text="${object.creditline}"></div>
+				<div class="col-sm-1">
+					<b>Gallery Text:</b>
+				</div>
+				<div class="col-sm-5" th:text="${object.gallery_text}"></div>
+			</div>
+			<div class="row">
+				<div class="col-sm-1">
+					<b>Description</b>
+				</div>
+				<div class="col-sm-11" th:text="${object.description}"></div>
+			</div>
+			<div class="row">
+				<div sec:authorize="hasAnyRole('TRUSTED','ADMIN')">
+					<p></p>
+					<form action="#" method="post" th:object="${crowdsourcing}"
+						th:action="@{'http://localhost:9080/object/'+${object.id}}"
+						role="form">
+						<div class="form-group">
+							<label for="comment">Additional Users Descriptions:</label>
+
+							<textarea class="form-control" rows="3" id="comment"
+								th:field="*{description}" placeholder="Enter Description"></textarea>
+							<input class="btn btn-primary btn-sm" type="submit"
+								th:value="#{displayItemCS.updateDescription}" />
+						</div>
+					</form>
+				</div>
+			</div>
+			<div class="row">
+				<div class="table-responsive">
+					<table class="table">
+
+						<tr th:each="cs : ${crowdsourcings}"
+							th:onclick="'javascript:rowClicked(\''+${cs.id}+'\');'">
+							<div class="row">
+								<div class="col-sm-9" th:text="${cs.description}"></div>
+								<div class="col-sm-1"
+									th:text="${#dates.format(cs.datestamp,'dd/MM/yyyy')}"></div>
+								<div class="col-sm-1">
+									<input type="hidden" id="CSid" th:value="${cs.id}" name="CSid" />
+
+									<!-- READ BY JQUERY TO GET SOURCE OF COMPLAINT -->
+									<input type="hidden" id="CSsource" value="Crowdsourcing" />
+									<!-- <button type="button" id="jmxxd" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#complaintModal" data-source="Crowdsourcing"><span class="glyphicon glyphicon-flag"></span> Flag</button></div> -->
+
+									<!-- USING JQUERY TO PICK UP THE 'button1' identifier below (using this as I was having issues with JQuery picking up the id="jmxxd"!) -->
+									<div sec:authorize="isAuthenticated()">
+										<button1 type="button" id="jmxxd"
+											class="btn btn-primary btn-xs" data-target="#complaintModal"
+											data-source="Crowdsourcing">
+										<span class="glyphicon glyphicon-flag"></span> Flag</button1>
+									</div>
+								</div>
+							</div>
+						</tr>
+
+					</table>
+				</div>
+
+			</div>
+			<!-- JM Modal insert 20-05-2015 -->
+
+
+			<div class="modal" id="complaintModal" tabindex="-1" role="dialog"
+				aria-labelledby="complaintModalLabel" aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal"
+								aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+							<h4 class="modal-title" id="complaintModalLabel">Flag
+								Comment/Description</h4>
+						</div>
+						<div class="modal-body">
+							<!-- /object/{id}/{commentid}/{thumb} -->
+							<form action="#" method="post" th:object="${commentFlag}"
+								th:action="@{'http://localhost:9080/object/'+${object.id}+'/flag'}"
+								role="form">
+
+								<div class="form-group">
+									<label for="recipient-name" class="control-label">Please
+										select the reason for reporting this comment.</label> 
+									<select th:field="*{flagchoice}" class="form-control" name="Xreport_reason" id="Xreport_reason">
+										<option th:each="type : ${flagchoices}" th:value="${typeStat.index}" th:text="${type.commentchoices}">Dummy Text</option>
+									</select>
+									<!-- SETTING THE COMMENT ROW INDEX -->
+									<input type="hidden" id="objectidX" name="sourceX" th:field="*{sourcecommentrowindex}" value="104" />
+									<!--  SETTING THE SOURCE OF THE COMPLAINT -->
+									<input type="hidden" id="sourceX" name="sourceX" th:field="*{flagsource}" value="104" /> 
+										<input type="hidden" id="idX" name="idX" value="104" />
+									<!-- DELETE THIS INPUT FIELD - ITS SPARE NOW (UPDATE JQUERY CODE) -->
+
+								</div>
+								<div class="form-group">
+									<label for="message-text" class="control-label">Please
+										give full details of the problem with the comment...</label>
+									<textarea class="form-control" id="message-text"
+										th:field="*{flagcomment}"></textarea>
+								</div>
+
+
+								<div class="modal-footer">
+									<button type="button" class="btn btn-default"
+										data-dismiss="modal">Cancel</button>
+									<button type="submit" class="btn btn-primary">Submit</button>
+									<!-- th:value="#{displayItemCS.updateDescription}" -->
+								</div>
+							</form>
+						</div>
+					</div>
+					<!-- /.modal-content -->
+				</div>
+				<!-- /.modal-dialog -->
+			</div>
+			<!-- /.modal -->
+
+
+			<!-- End JM insert 20-05-2015 -->
+
+			<hr style="height: 5px" />
+
+			<p></p>
+			<p></p>
+
+			<div class="row">
+				<div class="col-sm-8">
+
+
+					<!-- USER COMMENTS SECTION -->
+					<p>
+						<b>User Comments:</b>
+					</p>
+
+					<div class="table-responsive">
+						<table class="table">
+							<div class="row">
+								<div class="col-sm-6">
+									<b><i>Comment</i></b>
+								</div>
+								<div class="col-sm-1">
+									<b><i>User Name</i></b>
+								</div>
+								<div class="col-sm-2">
+									<b><i>Date/Time</i></b>
+								</div>
+								<div sec:authorize="isAuthenticated()">
+									<div class="col-sm-1">
+										<b><i>Like</i></b>
+									</div>
+									<div class="col-sm-1">
+										<b><i>Dislike</i></b>
+									</div>
+									<div class="col-sm-1">
+										<b><i>Flag</i></b>
+									</div>
+								</div>
+							</div>
+
+							<tr th:each="c : ${comments}">
+								<div class="row">
+
+									<div class="col-sm-6" th:text="${c.commenttext}">Comment</div>
+									<div class="col-sm-1" th:text="${c.user.username}">User</div>
+									<div class="col-sm-2" th:text="${#dates.format(c.datestamp,'dd/MM/yyyy')}">Date</div>
+									<div sec:authorize="isAuthenticated()">
+										<div class="col-sm-1">
+											<a href="#"
+												th:href="@{'http://localhost:9080/object/'+${object.id}+'/'+${c.id}+'/thumbup'}"
+												class="btn btn-default btn-xs"><span
+												class="glyphicon glyphicon-thumbs-up"></span> <!-- 	<span class="badge" th:text="${c.thumbupcount}">0</span></a></div> -->
+												<span style="color:green;background-color:white" class="badge" th:text="${c.thumbupcount}">0</span></a>
+										</div>
+										<div class="col-sm-1">
+											<a href="#"
+												th:href="@{'http://localhost:9080/object/'+${object.id}+'/'+${c.id}+'/thumbdown'}"
+												class="btn btn-default btn-xs"><span
+												class="glyphicon glyphicon-thumbs-down"></span> <span
+												style="color:red;background-color:white" class="badge" th:text="${c.thumbdowncount}">0</span></a>
+										</div>
+										<div class="col-sm-1">
+											<input type="hidden" id="Csource" value="Comment" />
+
+											<!--  USING JQUERY TO PICK UP THE 'button2' identifier below (using this as I was having issues with JQuery picking up the id="jmxxd2"!)  -->
+											<button2 type="button" id="jmxxd2"
+												class="btn btn-primary btn-xs" data-target="#complaintModal"
+												data-source="Comment">
+											<span class="glyphicon glyphicon-flag"></span> Flag</button2>
+										</div>
+									</div>
+							 	</div>
+							</tr>
+						</table>
+					</div>
+
+					<!-- DISPLAY ONLY FOR LOGGED IN USERS (e.g. ADMIN, TRUSTED, USER) -->
+					<div sec:authorize="isAuthenticated()">
+						<form action="#" method="post" name="comment"
+							th:object="${comment}"
+							th:action="@{'http://localhost:9080/object/'+${object.id}}"
+							role="form">
+							<div class="form-group">
+								<label>Add Comment:</label>
+								<textarea class="form-control" rows="3" id="comment"
+									th:field="*{commenttext}" placeholder="Enter New Comment"></textarea>
+								<!-- 							<input class="form-control"  name="comment" th:field="*{commenttext}" placeholder="Enter New Comment" ></input> -->
+								<input type="submit" class="btn btn-primary btn-sm"
+									value="Add Comment" />
+							</div>
+						</form>
+					</div>
+					<!-- TAG WORDS SECTION	 -->
+					<p>
+						<b>User Tag words:</b>
+					</p>
+
+					<!-- First column of Tagwords -->
+					<div class="col-xs-6">
+						<div class="table-responsive">
+							<table class="table">
+								<!-- 	<div class="row">
+					<div class="col-sm-6">Tag word(s)</div>
+				</div> -->
+								<tr th:each="t : ${tagnames}">
+									<div class="row">
+
+										<div class="col-sm-6" th:if="(${tStat.count}+1) % 2 == 0"
+											th:text="${t.tagword}">Tag Word(s)</div>
+									</div>
+								</tr>
+							</table>
+						</div>
+					</div>
+					<!-- Second column of Tagwords -->
+					<div class="col-xs-6">
+
+						<div class="table-responsive">
+							<table class="table">
+
+								<tr th:each="t : ${tagnames}">
+									<div class="row">
+
+										<div class="col-sm-6" th:if="${tStat.count} % 2 == 0"
+											th:text="${t.tagword}">Tag Word(s)</div>
+
+									</div>
+								</tr>
+
+							</table>
+						</div>
+					</div>
+
+					<!-- DISPLAY ONLY FOR Logged in Users (ADMIN, TRUSTED & USER): -->
+					<div sec:authorize="isAuthenticated()">
+						<p></p>
+						<form action="#" method="post" name="tagname"
+							th:object="${tagname}"
+							th:action="@{'http://localhost:9080/object/'+${object.id}}"
+							role="form">
+							<div class="form-group">
+								<label for="tagname">Add Tag word(s):</label> <input
+									id="tagname" name="tagname" th:field="*{tagword}"
+									placeholder="Enter New Tag Word(s)"></input> <input
+									type="submit" class="btn btn-primary btn-sm" value="Add Tag word" />
+							</div>
+						</form>
+					</div>
+				</div>
+
+
+				<div class="col-sm-4">
+					<p>
+						Number of images for this object is <span th:text="@{${imageNo}}"></span>.
+					</p>
+					<div class="house-thumb">
+						<div th:switch="${imageNo}">
+							<a th:case="'0'"> <img
+								onerror="cooperhewitt.images.onLoadError(this)"
+								src="https://collection.cooperhewitt.org/images/not-available-sq.png"
+								title="Stencil" class="image-not-available img-responsive" />
+								This object has not been digitised yet.
+							</a> <a th:case="*"> <img th:src="@{${image.url}}"></img>
+							</a>
+						</div>
+					</div>
+					<!-- Close house-thumb -->
+
+				</div>
+
+			</div>
+		</div>
+		<!-- end jmtest -->
+	</div>
+	<!-- end of container-fluid -->
+
+</body>
+</html>

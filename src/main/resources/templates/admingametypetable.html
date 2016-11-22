@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+		xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head th:include="layout :: htmlhead" th:with="title='Display an Object'"></head>
+
+<body>
+
+	<div th:replace="layout :: navbar">(navbar)</div>
+		
+	
+
+	<div class="container">
+	
+	
+	<div class="row">
+	
+					
+					<a href="#" th:href="@{'http://localhost:9080/homepage'}" class="btn btn-primary">Home Page</a>
+	<!-- GAMIFICATION TABLE SECTION -->
+			
+		
+	
+
+  <h2>Gamification Points</h2>
+    <h4>Alter points in this table to assign point value for specified activities:</h4>    
+  <table class="table table-striped">
+  <thead>
+	<tr>
+	<th>Game Name</th>
+	<th>Points</th>
+	<th>Action</th>
+	</tr>
+  </thead>
+  	<tr th:each="object : ${gametype}">
+       <td th:text="${object.gamename}"></td>
+       <td th:text="${object.gamepoints}"></td>
+    <td> <a th:href="@{'http://localhost:9080/admin/gametype/viewpoints/'+${object.game_id}}"  
+       class="btn btn-primary btn-sm">Edit Points</a>
+    </td>
+    </tr>
+    </table>
+	
+
+
+	
+ 			
+ 			<!-- CENTERING HOME PAGE BUTTON -->
+
+	</div>
+
+	
+	</div> <!-- end of container-fluid -->
+
+</body>
+</html>
+

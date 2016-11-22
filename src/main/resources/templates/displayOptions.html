@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+		xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head th:include="layout :: htmlhead" th:with="title='Browse Options'"></head>
+
+
+<body>
+
+	<div th:replace="layout :: navbar">(navbar)</div>
+				
+<!-- 		<nav class="navbar navbar-default">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a class="navbar-brand">Select Browsing Options</a>
+			</div>
+			<div>
+				<ul class="nav navbar-nav">
+					<li><a href="http://localhost:9080/browse/listall/objects/1/10">Museum Objects</a></li>
+					<li><a href="http://localhost:9080/browse/listall/participants">People</a></li>
+					<li><a href="http://localhost:9080/browse/listall/roles">Roles</a></li>
+					
+					<li><a href="http://localhost:9080/browse/listall/images">Remove: View all Images</a></li>
+					<li><a href="http://localhost:9080/browse/listall/objects/1/10">JM: View all Objects</a></li>
+					<li><a href="http://localhost:9080/browse/listall/roles">View all Roles</a></li>
+					<li><a href="http://localhost:9080/browse/listall/participants">View all Participants</a></li>
+					<li><a href="http://localhost:9080/browse/listall/images">View all Images</a></li>
+					
+				</ul>
+
+			</div>
+		</div>
+	</nav> -->
+
+	<!-- End of Navbar -->
+
+	<div class="jumbotron">
+	<div class="container">
+	<div class="row">
+		<div class="col-sm-12">
+			<h2>There are <span th:text="${countobjects}"></span> objects as part of the Cooper Hewitt Design Museum</h2>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-sm-12">
+			<h3>Please feel free to browse our collection by: <a th:href="@{#{home.url}+'/browse/listall/objects/1/10'}">Museum Objects/Artifacts<span class="badge" th:text="${countobjects}">0</span></a>, 
+			<a th:href="@{#{home.url}+'/browse/listall/participants/1/10'}"> People <span class="badge" th:text="${countpeople}">0</span></a> and 
+				<a th:href="@{#{home.url}+'/browse/listall/roles/1/10'}">Roles<span class="badge" th:text="${countrole}">0</span></a>
+				</h3>
+		</div>
+	</div>
+	</div>
+	
+</div>  <!-- END JUMBOTRON -->
+<!-- CREATE DROP DOWN SELECTION MENUS -->
+<div class="container">
+	<h3><font color="RED" th:text="${message}"></font></h3>
+
+<form action="#" method="post"  th:object="${searchoptions}" th:action="@{#{home.url}+'/browse/'}" role="form"> 
+
+
+
+  <h2>Choose Search Criteria</h2>
+  <div class="panel-group" id="accordion">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">
+       <a data-toggle="collapse" id="collapse11" data-parent="#accordion" href="#collapse1">	Museum Objects/Artifacts</a>
+        </h3>
+      </div>
+      <div id="collapse1" class="panel-collapse collapse in">
+        <div class="panel-body">
+        		<div class="form-group">	
+        		<label for="objectID"> Search By: </label>
+		<select th:field="*{string2}" class="form-control" name="searchoptions">
+	    	<option value="title">Search by Title</option>
+	    	<option value="id">Search by Object ID</option>
+	    	<option value="medium">Search by Medium</option>
+	    	<option value="creditline">Search by CreditLine</option>
+	    	<option value="description">Search by Description</option>
+	    	<option value="images">Search by Images</option>
+	    </select>
+	    <p> </p>
+   <input class="form-control"  id="searchsource" th:field="*{string6}" type="hidden" name="searchsource" /> 
+             <input class="form-control"  th:field="*{string3}" type="text" name="searchinfo"  placeholder="Enter Search Criteria"/> 
+             <p> </p>
+                        <input  type="submit" class="btn btn-primary btn-xd" value="Search"  th:value="'Search'"/>
+                     </div>
+                     </div>
+      </div>
+    </div>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">
+          <a data-toggle="collapse" id="collapse22" data-parent="#accordion" href="#collapse2">People</a>
+        </h3>
+      </div>
+      <div id="collapse2" class="panel-collapse collapse">
+        <div class="panel-body">
+		<div class="form-group">
+				<label for="objectID"> Person Name : </label>
+					<input class="form-control" th:field="*{string4}" type="text" name="personid"  placeholder="Enter Person Name"/> 
+            <p> </p>
+                   <input   type="submit" class="btn btn-primary btn-xd" value="Search"  th:value="'Search'"/>
+    </div>
+		</div>
+      </div>
+    </div>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">
+          <a data-toggle="collapse" id="collapse33" data-parent="#accordion" href="#collapse3">Roles</a>
+        </h3>
+      </div>
+      <div id="collapse3" class="panel-collapse collapse">
+        <div class="panel-body"><div class="form-group">
+				<label for="objectID"> Role: </label>
+				<input class="form-control" th:field="*{string5}"  type="text" name="rolename"  placeholder="Enter Role Name"/> 
+            <p> </p>
+                   <input   type="submit" class="btn btn-primary btn-xd" value="Search"  th:value="'Search'"/>
+    </div>
+    
+    </div>
+      </div>
+    </div>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">
+       <a data-toggle="collapse" id="collapse44" data-parent="#accordion" href="#collapse4">Crowdsourced Object Descriptions, User Comments and Tag Words</a>
+        </h3>
+      </div>
+      <div id="collapse4" class="panel-collapse collapse">
+        <div class="panel-body">
+        		<div class="form-group">	
+        		<label for="objectID"> Search By: </label>
+		<select th:field="*{string7}" class="form-control" name="searchoptions">
+	    	<option value="crowdsourcing">Crowdsourced Descriptions</option>
+	    	<option value="comments">User comments</option>
+	    	<option value="tagwords">Tag Words</option>
+	    </select>
+	    <p> </p>
+             <input class="form-control"  th:field="*{string8}" type="text" name="searchinfo"  placeholder="Enter Search Criteria"/> 
+             <p> </p>
+                        <input type="submit" class="btn btn-primary btn-xd" value="Search"  th:value="'Search'"/>
+                     </div>
+                     </div>
+      </div>
+    </div>
+  </div> 
+  
+  <div class="row">
+	<div class="col-sm-12">
+	<h3>Return Results:</h3>
+	</div>
+	</div>
+  
+  <div class="row">
+	<div class="col-sm-6">
+	<label>Number of results per page:</label>
+	    <select th:field="*{int1}" class="form-control" name="itemsperpage" >
+	    	<option value="10">10 items per page</option>
+	    	<option value="25">25 items per page</option>
+	    	<option value="50">50 items per page</option>
+	    	</select>
+
+	    	
+        </div>
+        	<div class="col-sm-6">
+        		<label>Results sorted by:</label>
+	    <select th:field="*{string1}" class="form-control" name="orderofresults">
+	    	<option value="ASC">Sort Results in Ascending order</option>
+	    	<option value="DESC">Sort Results in Descending order</option>
+	    	</select>
+        </div>
+  
+</div>
+
+  </form>
+</div>
+</body>
+</html>

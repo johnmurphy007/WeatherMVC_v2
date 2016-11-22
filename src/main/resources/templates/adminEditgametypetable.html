@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+		xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head th:include="layout :: htmlhead" th:with="title='Display an Object'"></head>
+
+<body>
+
+	<div th:replace="layout :: navbar">(navbar)</div>
+		
+	
+
+	<div class="container">
+	
+	
+	<div class="row">
+	
+					
+					<a href="#" th:href="@{'http://localhost:9080/homepage'}" class="btn btn-primary">Home Page</a>
+	<!-- GAMIFICATION TABLE SECTION -->
+			
+		<h2>Gamification Points Administration</h2>
+  <h4>Alter the points below for the specified gamification category:</h4>  
+
+<form action="#" method="post" th:object="${gametype}" th:action="@{#{home.url}+'/admin/gametype/viewpoints/'+*{game_id}}" role="form" >
+
+	<div class="form-group" >
+		<label for="id">Game Id</label>
+		<input type="number" th:field="*{game_id}" id="id" th:disabled="true" class="form-control" />
+	</div>
+
+		<!-- If I was to Internationalize this, would use something like below in line 25
+		<label for="id" th:text="#{modifygametype.id}" class="control-label"></label>  -->
+
+	<div class="form-group" >
+		<label for="gamename">Game Name</label>
+		<input type="text" th:field="*{gamename}" th:disabled="true" class="form-control" />
+	</div>
+
+		<!-- If I was to Internationalize this, would use something like below in line 33 id="disabledTextInput"
+		<label for="gamename" th:text="#{modifygametype.gamename}" class="control-label"></label>>  -->
+
+
+	<div class="form-group">
+		<label for="gamepoints">Game Points</label>
+		<input type="number" th:field="*{gamepoints}" id="gamepoints" class="form-control" />
+	</div>
+
+		<!-- If I was to Internationalize this, would use something like below in line 42
+		<label for="gamename" th:text="#{modifygametype.gamename}" class="control-label"></label>>  -->
+
+
+	<div class="form-actions">
+		<input type="submit" value="Submit Game Points" id="modify" class="ui-button" />
+	</div>
+</form>
+
+	
+ 			
+ 			<!-- CENTERING HOME PAGE BUTTON -->
+
+	</div>
+
+	
+	</div> <!-- end of container-fluid -->
+
+</body>
+</html>
+

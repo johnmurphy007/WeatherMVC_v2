@@ -1,0 +1,271 @@
+{
+  "response": {
+  "version":"0.1",
+  "termsofService":"http://www.wunderground.com/weather/api/d/terms.html",
+  "features": {
+  "geolookup": 1
+  ,
+  "conditions": 1
+  }
+	}
+		,	"location": {
+		"type":"INTLCITY",
+		"country":"IE",
+		"country_iso3166":"IE",
+		"country_name":"Ireland",
+		"state":"",
+		"city":"Cork",
+		"tz_short":"GMT",
+		"tz_long":"Europe/Dublin",
+		"lat":"51.84999847",
+		"lon":"-8.47999954",
+		"zip":"00000",
+		"magic":"1",
+		"wmo":"03955",
+		"l":"/q/zmw:00000.1.03955",
+		"requesturl":"global/stations/03955.html",
+		"wuiurl":"http://www.wunderground.com/global/stations/03955.html",
+		"nearby_weather_stations": {
+		"airport": {
+		"station": [
+		{ "city":"Cork Airport", "state":"", "country":"Ireland", "icao":"EICK", "lat":"51.84812927", "lon":"-8.47943401" }
+		,{ "city":"Cork", "state":"", "country":"IE", "icao":"EICK", "lat":"51.84812927", "lon":"-8.47943401" }
+		,{ "city":"Kerry Airport", "state":"", "country":"IE", "icao":"EIKY", "lat":"52.18090057", "lon":"-9.52377987" }
+		,{ "city":"Shannon", "state":"", "country":"IE", "icao":"EINN", "lat":"52.70197678", "lon":"-8.92481709" }
+		]
+		}
+		,
+		"pws": {
+		"station": [
+		{
+		"neighborhood":"Douglas Rd.",
+		"city":"Cork",
+		"state":"CORK",
+		"country":"IRELAND",
+		"id":"ICORKCOR19",
+		"lat":51.884415,
+		"lon":-8.449474,
+		"distance_km":4,
+		"distance_mi":2
+		},
+		{
+		"neighborhood":"Douglas Road",
+		"city":"Cork",
+		"state":"",
+		"country":"IE",
+		"id":"ICORK21",
+		"lat":51.889359,
+		"lon":-8.456545,
+		"distance_km":4,
+		"distance_mi":2
+		},
+		{
+		"neighborhood":"Ballea Road",
+		"city":"Carraig Ui Leighin",
+		"state":"",
+		"country":"IE",
+		"id":"ICARRAIG3",
+		"lat":51.808521,
+		"lon":-8.431846,
+		"distance_km":5,
+		"distance_mi":3
+		},
+		{
+		"neighborhood":"Coach Hill",
+		"city":"Cork",
+		"state":"",
+		"country":"IE",
+		"id":"ICORK23",
+		"lat":51.872723,
+		"lon":-8.397349,
+		"distance_km":6,
+		"distance_mi":3
+		},
+		{
+		"neighborhood":"Mahon",
+		"city":"Cork",
+		"state":"",
+		"country":"IE",
+		"id":"ICORK27",
+		"lat":51.888149,
+		"lon":-8.402907,
+		"distance_km":6,
+		"distance_mi":4
+		},
+		{
+		"neighborhood":"Cork",
+		"city":"Cork",
+		"state":"Cork",
+		"country":"IRELAND",
+		"id":"IMUNSTER11",
+		"lat":51.899879,
+		"lon":-8.402870,
+		"distance_km":7,
+		"distance_mi":4
+		},
+		{
+		"neighborhood":"Westgrove",
+		"city":"Ballincollig",
+		"state":"",
+		"country":"IE",
+		"id":"IBALLINC2",
+		"lat":51.886669,
+		"lon":-8.614718,
+		"distance_km":10,
+		"distance_mi":6
+		},
+		{
+		"neighborhood":"R612",
+		"city":"Carraig Ui Leighin",
+		"state":"",
+		"country":"IE",
+		"id":"ICARRAIG5",
+		"lat":51.807777,
+		"lon":-8.338044,
+		"distance_km":10,
+		"distance_mi":6
+		},
+		{
+		"neighborhood":"Unnamed Road",
+		"city":"Carraig Ui Leighin",
+		"state":"",
+		"country":"IE",
+		"id":"ICARRAIG2",
+		"lat":51.756538,
+		"lon":-8.342803,
+		"distance_km":14,
+		"distance_mi":8
+		},
+		{
+		"neighborhood":"Innishannon",
+		"city":"Innishannon",
+		"state":"CORK",
+		"country":"IRELAND",
+		"id":"ICORKINN2",
+		"lat":51.749722,
+		"lon":-8.649444,
+		"distance_km":16,
+		"distance_mi":9
+		},
+		{
+		"neighborhood":"",
+		"city":"Watergrasshill",
+		"state":"CORK",
+		"country":"IRELAND",
+		"id":"ICORKWAT2",
+		"lat":52.007198,
+		"lon":-8.341733,
+		"distance_km":19,
+		"distance_mi":11
+		},
+		{
+		"neighborhood":"cork",
+		"city":"Midleton",
+		"state":"CORK",
+		"country":"IRELAND",
+		"id":"ICORKMID3",
+		"lat":51.919720,
+		"lon":-8.180068,
+		"distance_km":21,
+		"distance_mi":13
+		},
+		{
+		"neighborhood":"Cow Lane",
+		"city":"Mainister Na Corann",
+		"state":"",
+		"country":"IE",
+		"id":"IMAINIST2",
+		"lat":51.831608,
+		"lon":-8.013775,
+		"distance_km":32,
+		"distance_mi":19
+		}
+		]
+		}
+		}
+	}
+  ,	"current_observation": {
+		"image": {
+		"url":"http://icons.wxug.com/graphics/wu2/logo_130x80.png",
+		"title":"Weather Underground",
+		"link":"http://www.wunderground.com"
+		},
+		"display_location": {
+		"full":"Cork, Ireland",
+		"city":"Cork",
+		"state":"",
+		"state_name":"Ireland",
+		"country":"IE",
+		"country_iso3166":"IE",
+		"zip":"00000",
+		"magic":"1",
+		"wmo":"03955",
+		"latitude":"51.84999847",
+		"longitude":"-8.47999954",
+		"elevation":"162.00000000"
+		},
+		"observation_location": {
+		"full":"Cork, ",
+		"city":"Cork",
+		"state":"",
+		"country":"IE",
+		"country_iso3166":"IE",
+		"latitude":"51.84812927",
+		"longitude":"-8.47943401",
+		"elevation":"531 ft"
+		},
+		"estimated": {
+		},
+		"station_id":"EICK",
+		"observation_time":"Last Updated on October 30, 12:00 PM GMT",
+		"observation_time_rfc822":"Fri, 30 Oct 2015 12:00:00 +0000",
+		"observation_epoch":"1446206400",
+		"local_time_rfc822":"Fri, 30 Oct 2015 12:05:03 +0000",
+		"local_epoch":"1446206703",
+		"local_tz_short":"GMT",
+		"local_tz_long":"Europe/Dublin",
+		"local_tz_offset":"+0000",
+		"weather":"Mostly Cloudy",
+		"temperature_string":"57 F (14 C)",
+		"temp_f":57,
+		"temp_c":14,
+		"relative_humidity":"94%",
+		"wind_string":"From the SSE at 22 MPH",
+		"wind_dir":"SSE",
+		"wind_degrees":150,
+		"wind_mph":22,
+		"wind_gust_mph":0,
+		"wind_kph":35,
+		"wind_gust_kph":0,
+		"pressure_mb":"1006",
+		"pressure_in":"29.71",
+		"pressure_trend":"0",
+		"dewpoint_string":"55 F (13 C)",
+		"dewpoint_f":55,
+		"dewpoint_c":13,
+		"heat_index_string":"NA",
+		"heat_index_f":"NA",
+		"heat_index_c":"NA",
+		"windchill_string":"NA",
+		"windchill_f":"NA",
+		"windchill_c":"NA",
+		"feelslike_string":"57 F (14 C)",
+		"feelslike_f":"57",
+		"feelslike_c":"14",
+		"visibility_mi":"6.2",
+		"visibility_km":"10.0",
+		"solarradiation":"--",
+		"UV":"1","precip_1hr_string":"-9999.00 in (-9999.00 mm)",
+		"precip_1hr_in":"-9999.00",
+		"precip_1hr_metric":"--",
+		"precip_today_string":"0.00 in (0.0 mm)",
+		"precip_today_in":"0.00",
+		"precip_today_metric":"0.0",
+		"icon":"mostlycloudy",
+		"icon_url":"http://icons.wxug.com/i/c/k/mostlycloudy.gif",
+		"forecast_url":"http://www.wunderground.com/global/stations/03955.html",
+		"history_url":"http://www.wunderground.com/history/airport/EICK/2015/10/30/DailyHistory.html",
+		"ob_url":"http://www.wunderground.com/cgi-bin/findweather/getForecast?query=51.84812927,-8.47943401",
+		"nowcast":""
+	}
+}

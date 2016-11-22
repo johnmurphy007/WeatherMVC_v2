@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+		xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"> 
+
+<head th:fragment="htmlhead" lang="en">
+	
+	<!-- Include scripts to enable JQuery & Bootstrap on html pages -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"
+      th:src="@{https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js}"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<!--  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css"/> -->
+<link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" />
+<link type="text/css" rel="stylesheet" href="/css/bootstrap-theme.min.css" />
+
+<script type="text/javascript"> 
+
+/* $(function() {
+	/editprofile/{username}
+$("#modify").click(function(){          
+       var age = $("#age").val();
+       var userId=$("#username").val();       
+       var url="/editprofile/"+userId+"/age/"+age; 
+       /* window.alert(url); */
+ /*     location.href=url;  
+});
+}); */
+/* Prevents JQuery code from running before the document is finished loading (could use $(function(){ }); too)
+$(document).ready(function(){
+	//show.bs.modal = This event fires immediately when the show instance method 
+	//is called. If caused by a click, the clicked element is available as the relatedTarget property of the event.
+	//[The on() method attaches one or more event handlers for the selected elements] */ 
+$(document).ready(function(){
+	
+/* 	$("#complaintModal").on('show.bs.modal', function(event){
+  
+		
+		var button = $(event.relatedTarget);  // Button that triggered the modal
+        var recipient = button.data("source"); // Extract info from data-* (data-whatever in this case) attributes
+    //  alert(event.data);
+       
+   //$(this).find('.jmtest');
+ 		var objectid = $("#objectidmodal").val(); //works
+        var commentid = $("#CSid").val(); //not working - always picks up first row id
+        var source = $("#CSsource").val();  //works 
+        var commenttest = $("#CSid").text();
+  
+       
+        $('#sourceX').val(source); //works - pulls info from main form!
+       $('#idX').val(commentid);
+       $('#objectidX').val(objectid); //assign variable value to html form element
+        
+          var titleData = button.data('title'); // Extract value from data-* attributes
+    //    alert('lll');
+        $(this).find('.modal-title').text(titleData + ' Form');
+     
+        	var modal = $(this);
+     		modal.find('.modal-title').text('Report comment on ' + recipient); //finds class "modal-title" and .text() sets or returns the text content of selected elements
+    //     	modal.find('.modal-body input').val(recipient);
+
+
+       }); */
+	
+ /* 	$("#jmxxd").click(function(){
+		window.alert("kkkkkk");
+ */
+	$("button1").each(function(i){
+		$(this).on("click", {x:i}, function(event){   //onclick, capture the row number (starting a 0) that click occured
+		var commentJMTest = event.data.x;  //extract the row number
+			 
+		$("#complaintModal").modal(true);  //display modal form 'complaintModal'
+			            
+		var button1 = $(event.relatedTarget);  // Button that triggered the modal
+		var recipient = button1.data("source"); // Extract info from data-* (data-source in this case) attributes
+	
+	   	//	var objectid = $("#objectidmodal").val(); //works
+	    var commentid = $("#CSid").val(); //not working - always picks up first row id
+	    var source = $("#CSsource").val();  //works 
+	    var commenttest = $("#CSid").text();
+			      
+			           
+	    $('#sourceX').val(source); //works - pulls info from main form!
+	    $('#idX').val(commentid);
+	    $('#objectidX').val(commentJMTest); //assign variable value to html modal form element
+	      var reason = $("#Xreport_reason").val();
+	        //alert(reason);
+	        if(reason==0){
+	        	$("#Xreport_reason").val(1); //setting the default value of selected items to  1
+	       	   }
+	        
+	    var titleData = button1.data('title'); // Extract value from data-* attributes
+	    //    alert('lll');
+	    $(this).find('.modal-title').text(titleData + ' Form');
+			         
+	   	var modal = $(this);
+	  	//finds class "modal-title" and .text() sets or returns the text content of selected elements		            		
+	   	modal.find('.modal-title').text('Report comment on ' + recipient); 
+	});
+	});        
+	
+ $("button2").each(function(i){
+    	$(this).on("click", {x:i}, function(event){   //onclick, capture the row number (starting a 0) that click occured
+        var commentJMTest = event.data.x;  //extract the row number
+     
+    
+        $("#complaintModal").modal(true);  //display modal form 'complaintModal'
+         
+ //       var button1 = $(event.relatedTarget);  // Button that triggered the modal
+ //       var recipient = button2.data("source"); // Extract info from data-* (data-source in this case) attributes
+
+  	//	var objectid = $("#objectidmodal").val(); //works
+//         var commentid = $("#CSid").val(); //not working - always picks up first row id
+        var source = $("#Csource").val();  //works 
+//         var commenttest = $("#CSid").text();
+   
+       // alert("row number ="+commentJMTest+" source = "+source);		
+        $('#sourceX').val(source); //works - pulls info from main form!
+        $('#idX').val(commentJMTest);
+        $('#objectidX').val(commentJMTest); //assign variable value to html modal form element
+	      var reason = $("#Xreport_reason").val();
+	        //alert(reason);
+	        if(reason==0){
+	        	$("#Xreport_reason").val(1); //setting the default value of selected items to  1
+	       	   }
+        //       var titleData = button1.data('title'); // Extract value from data-* attributes
+     //    alert('lll');
+ //       $(this).find('.modal-title').text(titleData + ' Form');
+      
+//       var modal = $(this);
+      //finds class "modal-title" and .text() sets or returns the text content of selected elements
+//        modal.find('.modal-title').text('Report comment on ' + recipient); 
+	 });
+	});
+
+
+ 
+	  $("a11").each(function(i){
+	    	$(this).on("click", {x:i}, function(event){   
+	    	       var commentJMTest = event.data.x;  //extract the row number
+	    //	       alert(commentJMTest);
+	      // var originalcommentflag = $(adminCommentdelete").val();
+	      var originalcommentflag = $("input:checkbox:checked").val();
+	      
+	   //   alert(originalcommentflag);
+	      var url="/admin/";
+	     // alert(url);
+	      if(originalcommentflag=="deletecomment"){
+	    	url="/admin/flaggedcomments/reviewed/"+commentJMTest+"/yes"; 
+	    	  }else{
+	    	url="/admin/flaggedcomments/reviewed/"+commentJMTest+"/no";}
+	//       alert(url);
+	     location.href=url;  
+	     	});
+	    	}); 
+	  
+	  $("a22").each(function(i){
+	    	$(this).on("click", {x:i}, function(event){   
+	    	       var commentJMTest = event.data.x;  //extract the row number
+	    //	       alert(commentJMTest);
+	      // var originalcommentflag = $(adminCommentdelete").val();
+	      var originalcommentflag = $("input:checkbox:checked").val();
+	      
+	   //   alert(originalcommentflag);
+	      var url="/admin/";
+	     // alert(url);
+	      if(originalcommentflag=="deletecomment"){
+	    	url="/admin/flaggeddescriptions/reviewed/"+commentJMTest+"/yes"; 
+	    	  }else{
+	    	url="/admin/flaggeddescriptions/reviewed/"+commentJMTest+"/no";}
+	//       alert(url);
+	     location.href=url;  
+	     	});
+	    	}); 
+	  
+	  
+	  $("#importbutton").click(function(){          
+	       var directory=$("#importdirectory").val();    
+	//       alert(directory);
+	       var url="/import/("+directory+")"; 
+	       /* window.alert(url); */
+	    location.href=url;  
+	});
+	  
+	  $("#collapse11").click(function(){
+		  //alert('hi');
+		     $('#searchsource').val('chobject');
+		  });
+	  
+	 $("#collapse22").click(function(){          
+	     $('#searchsource').val('participant');
+	  });
+	 $("#collapse33").click(function(){          
+		     $('#searchsource').val('role');
+		  });
+	 $("#collapse44").click(function(){          
+	     $('#searchsource').val('crowdsource-gamification');
+	  });
+});
+
+</script>
+      
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
+
+	<title th:text="${title}"></title>
+
+<style>
+.carousel-inner>.item>img, .carousel-inner>.item>a>img {
+	width: 70%;
+	height: 300px; /* JM added to set the height of the image*/
+	margin: auto;
+}
+
+/* Used to set the image size used when displaying ChObject image to webpage. */
+.house-thumb>div>a>img {
+	height: auto;
+	width: auto;
+	max-width: 500px;
+	max-height:500px;
+	margin: auto;
+}
+
+/* Set the padding on the Bootstrap Container-fluid */
+.container-fluid {
+    padding: 0 15px;
+}
+
+/* Using the following CSS to remove the horizontal bars that were appearing on webpages */
+.row {
+  margin-left: 0px;
+  margin-right: 0px;
+}
+</style>
+
+
+</head>
+
+
+<body>
+
+	<!-- <div sec:authorize="hasRole('ADMIN')">
+		This content is only shown to administrators.
+		<div sec:authorize="isAuthenticated()">
+			You have logged in with Name: <span sec:authentication="name">Bob</span>
+			| Your Role is: <span sec:authentication="principal.authorities">[USER,ADMIN]</span>
+			| <a href="home.html" th:href="@{/logout}">Logout</a>
+		</div>
+
+
+	</div>
+	<div sec:authorize="hasRole('USER')">
+		This content is only shown to users.
+
+		<div sec:authorize="isAuthenticated()">
+			Welcome <span sec:authentication="name">Bob</span> | Roles: <span
+				sec:authentication="principal.authorities">[ROLE_USER,ROLE_ADMIN]</span>
+			| <a href="index.html" th:href="@{/logout}"
+				class="glyphicon glyphicon-log-out">Logout</a>
+		</div>
+
+
+	</div> -->
+
+
+
+	<nav th:fragment="navbar" class="navbar navbar-inverse">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<!-- "navbar-brand" used to highlights this text -->
+				<a class="navbar-brand" width="device-width"
+					href="http://localhost:9080/home">Cooper-Hewitt Design Museum</a>
+			</div>
+			<div class="collapse navbar-collapse">
+				<div>
+					<ul class="nav navbar-nav">
+						<!-- <li class="active"><a href="http://localhost:9080/home">Home</a></li> -->
+						<!-- <li><a href="http://localhost:9080/home">Home</a></li> -->
+						<li><a href="http://localhost:9080/browse/">Browse</a></li>
+					</ul>
+
+		<!-- DISPLAY FOR ADMIN (REF: Chapter 15: http://docs.spring.io/spring-security/site/docs/3.0.x/reference/el-access.html) -->
+					<div sec:authorize="hasRole('ADMIN')">
+						This content is only shown to administrators.
+
+						<ul class="nav navbar-nav navbar-right">
+						 	<li><a><font color="white"><b>Welcome <span sec:authentication="name">Bob</span></b></font></a></li> 
+							<li><a href="http://localhost:9080/homepage">Go to Home page</a></li>
+							<li><a href="http://localhost:9080/logout"><span
+									class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+						</ul>
+	
+					</div>
+		<!-- DISPLAY FOR USERS (gives the option of having a different display for USERS): -->
+					<div sec:authorize="hasAnyRole('USER','TRUSTED')">
+						This content is only shown to users.
+					<!-- 	<div sec:authorize="isAuthenticated()"> -->
+						<ul class="nav navbar-nav navbar-right">
+						 	<li><a><font color="white"><b>Welcome <span sec:authentication="name">Bob</span> <span class="badge" th:text="${usergamepoints}"> 0</span></b></font></a></li> 
+						 	<!-- <li><a><font color="white"><b>Welcome <span sec:authentication="name">Bob</span></b></font></a></li>  -->
+							<li><a href="http://localhost:9080/homepage">Go to Home Page</a></li>
+							<li><a href="http://localhost:9080/logout"><span
+									class="glyphicon glyphicon-log-out"></span> Logout</a></li>			
+						</ul>
+						<!-- </div> -->
+						</div>
+		<!-- DISPLAY FOR ANONYMOUS USERS: -->
+								<div sec:authorize="isAnonymous()">
+						This content is only shown to NOT LOGGED IN users?.
+						<ul class="nav navbar-nav navbar-right">
+					<li><a href="http://localhost:9080/newuser"><span
+							class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+					<li><a href="http://localhost:9080/login"><span
+							class="glyphicon glyphicon-log-in"></span> Login</a></li>
+				</ul>
+				
+						</div>
+			</div>
+			</div>
+			</div>
+	</nav>
+
+	<nav th:fragment="weathernavbar" class="navbar navbar-inverse">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<!-- "navbar-brand" used to highlights this text -->
+				<a class="navbar-brand" width="device-width"
+					href="http://localhost:9080/weather">Weather Home Page</a>
+			</div>
+			<div class="collapse navbar-collapse">
+				<div>
+				<!-- 	<ul class="nav navbar-nav">
+					
+						<li><a href="http://localhost:9080/browse/">Browse</a></li>
+					</ul>   -->
+
+		<!-- DISPLAY FOR ADMIN (REF: Chapter 15: http://docs.spring.io/spring-security/site/docs/3.0.x/reference/el-access.html) -->
+					<div sec:authorize="hasRole('ADMIN')">
+						This content is only shown to administrators.
+
+						<ul class="nav navbar-nav navbar-right">
+						 	<li><a><font color="white"><b>Welcome <span sec:authentication="name">Bob</span></b></font></a></li> 
+							<li><a href="http://localhost:9080/homepage">Go to Home page</a></li>
+							<li><a href="http://localhost:9080/logout"><span
+									class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+						</ul>
+	
+					</div>
+		<!-- DISPLAY FOR USERS (gives the option of having a different display for USERS): -->
+					<div sec:authorize="hasAnyRole('USER','TRUSTED')">
+						This content is only shown to users.
+					<!-- 	<div sec:authorize="isAuthenticated()"> -->
+						<ul class="nav navbar-nav navbar-right">
+						 	<li><a><font color="white"><b>Welcome <span sec:authentication="name">Bob</span> <span class="badge" th:text="${usergamepoints}"> 0</span></b></font></a></li> 
+						 	<!-- <li><a><font color="white"><b>Welcome <span sec:authentication="name">Bob</span></b></font></a></li>  -->
+							<li><a href="http://localhost:9080/homepage">Go to Home Page</a></li>
+							<li><a href="http://localhost:9080/logout"><span
+									class="glyphicon glyphicon-log-out"></span> Logout</a></li>			
+						</ul>
+						<!-- </div> -->
+						</div>
+		<!-- DISPLAY FOR ANONYMOUS USERS: -->
+								<div sec:authorize="isAnonymous()">
+						This content is only shown to NOT LOGGED IN users?.
+						<ul class="nav navbar-nav navbar-right">
+					<li><a href="http://localhost:9080/newuser"><span
+							class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+					<li><a href="http://localhost:9080/login"><span
+							class="glyphicon glyphicon-log-in"></span> Login</a></li>
+				</ul>
+				
+						</div>
+			</div>
+			</div>
+			</div>
+	</nav>
+
+
+
+
+
+</body>
+</html>

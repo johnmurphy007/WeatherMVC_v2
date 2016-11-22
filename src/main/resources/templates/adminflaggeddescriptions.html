@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+		xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head th:include="layout :: htmlhead" th:with="title='Display an Object'"></head>
+
+<body>
+
+	<div th:replace="layout :: navbar">(navbar)</div>
+		
+	
+
+	<div class="container-fluid">
+	
+	
+	<div class="row">
+		<div class="col-sm-8">
+					
+					
+	<!-- LIST FLAGGED COMMENTS TABLE SECTION -->
+	<a href="#" th:href="@{'http://localhost:9080/homepage'}" class="btn btn-primary">Admin Home Page</a>
+					<h3><b>Flagged Descriptions</b></h3>
+
+	
+			<div class="table-responsive">
+				<table class="table">
+		 	<div class="row">
+					<div class="col-xs-1"><b><i>#</i></b></div>
+					<div class="col-xs-1"><b><i>Flag User</i></b></div>
+						<div class="col-xs-1"><b><i>Flag Date</i></b></div>
+					<div class="col-xs-2"><b><i>Flag Reason</i></b></div>
+					<div class="col-xs-2"><b><i>Flag Comment</i></b></div>
+						<div class="col-xs-2"><b><i>Original Comment</i></b></div>
+		<div class="col-xs-1"><b><i>Delete Original Comment</i></b></div>
+				<div class="col-xs-1"><b><i>Admin Reviewed</i></b></div>
+			</div>
+				<tr th:each="u : ${crowdsourcingFlags}">
+				 	<div class="row"> 
+					<div class = "col-sm-1" th:text="${uStat.count}">Count</div>
+					<div class = "col-sm-1" th:text="${u.user.username}">Comment</div>
+					<div class = "col-sm-1" th:text="${#dates.format(u.flagdate,'dd MMM yyyy')}">Datestamp</div>	
+					<div class = "col-sm-2" th:text="${u.flagchoice.commentchoices}">User</div>
+						<div class = "col-sm-2" th:text="${u.flagcomment}">User</div>
+						<div class = "col-sm-2" th:text="${u.crowdsourcing.description}">User</div>
+	<div class = "col-sm-1"><input id="adminCommentdelete1" class="form-control" type="checkbox" name="commentdelete1" value="deletecomment"   /></div><!-- th:text="${u.comment.flag}" -->
+	<!-- USING JQuery to pick up the "a22" identifier -->
+	<div class = "col-sm-1"><a22><input id="adminreviewclick1" class="form-control" type="radio" th:href="@{'http://localhost:9080/admin/flaggedcomments/'+${u.id}}"   /></a22></div>
+						
+<!-- 	<div class = "col-sm-1"><input id="adminreviewclick" class="form-control" type="checkbox" name="adminreviewed" th:href="@{'http://localhost:9080/admin/flaggedcomments/'+${u.id}}"   /></div>
+	 -->
+	
+
+			 </div>
+				</tr>
+		
+				</table>
+			</div>
+			
+	
+ 			<!-- CENTERING HOME PAGE BUTTON -->
+ 			<div class="row">
+					<div class="col-xs-5"></div>
+			<div class="col-xs-2"><a href="#" th:href="@{'http://localhost:9080/homepage'}" class="btn btn-primary">Home Page</a> </div>
+					<div class="col-xs-5"></div>
+					</div>
+	</div>
+
+	</div>
+	</div> <!-- end of container-fluid -->
+
+</body>
+</html>

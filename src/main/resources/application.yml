@@ -1,0 +1,77 @@
+# EMBEDDED SERVER CONFIGURATION (ServerProperties)
+server:
+  port: 9080
+#/Users/john/Documents/Git/Smithsonian/collection/objects/682
+#INTERNATIONALISATION (MessageSourceAutoConfiguration)
+spring.messages:
+  basename:messages
+  cache-seconds:-1
+  encoding:UTF-8
+spring:
+  profiles.active: default
+---
+spring:
+  profiles: default
+  thymeleaf.cache: false
+#spring.data.mongodb.uri=mongodb://username:password@host:port
+#
+#
+#  jpa:
+#    show-sql: true
+#    hibernate:
+#      ddl-auto: none
+#      naming_strategy: org.hibernate.cfg.DefaultNamingStrategy
+spring.datasource:
+  driverClassName: com.mysql.jdbc.Driver
+  url: jdbc:mysql://localhost/cooperhewitt
+  username: root
+  password:
+  schema:
+  data:
+#spring.datasource.driver-class-name=com.mysql.jdbc.Driver
+spring.jpa:
+  hibernate:
+    dialect: org.hibernate.cfg.DefaultNamingStrategy
+    ddl-auto: update
+spring.mail.smtp:
+   host: smtp.gmail.com
+   username: johnmurphy.ber@gmail.com
+   password: bread2jm
+   port: 465
+   default-encoding: UTF-8
+   timeout: 60000
+   connectiontimeout: 60000
+   auth: true
+   ssl.enable: false
+   properties.mail.smtp:
+      starttls.enable: true
+      ssl.enable: false
+      auth: true
+#      socketFactory:
+#         port: 587
+#         class: javax.net.ssl.SSLSocketFactory
+#         fallback: false
+     
+        
+#      .jpa:
+ # hibernate.naming_strategy: org.hibernate.cfg.DefaultNamingStrategy
+# JPA (JpaBaseConfiguration, HibernateJpaAutoConfiguration)
+#spring.jpa.properties.*= # properties to set on the JPA connection
+#spring.jpa.open-in-view=true
+#spring.jpa.show-sql=true
+#spring.jpa.database-platform=
+#spring.jpa.database=
+#spring.jpa.generate-ddl=false # ignored by Hibernate, might be useful for other vendors
+#spring.jpa.hibernate.naming-strategy= # naming classname
+#spring.jpa.hibernate.ddl-auto= # defaults to create-drop for embedded dbs
+#spring.data.jpa.repositories.enabled=true # if spring data repository support is enabled
+---
+#spring:
+#  profiles: test
+#spring.datasource:
+#  driverClassName: org.h2.Driver
+#  url: jdbc:h2:mem:sampletest;MODE=MySQL
+#  schema: caf_assignment1-schema_h2.sql
+#  data: caf_assignment1-data_h2.sql
+
+  

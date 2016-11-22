@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<!--  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css"/>-->
+<link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" />
+<link type="text/css" rel="stylesheet"
+	href="/css/bootstrap-theme.min.css" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Display One Cultural Heritage Object</title>
+</head>
+
+
+<body>
+	<nav class="navbar navbar-default">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="http://localhost:9080/home">Cooper-Hewitt Design Museum</a>
+			</div>
+			<div>
+				<ul class="nav navbar-nav">
+					<li class="active"><a href="http://localhost:9080/browse/listall/objects">View all objects</a></li>
+					<li><a href="http://localhost:9080/browse/listall/roles">View all Roles</a></li>
+					<li><a href="http://localhost:9080/browse/listall/participants">View all Participants</a></li>
+					<li><a href="http://localhost:9080/browse/listall/images">View all Images</a></li>
+					<!--         <li><a href="import">View all CHObjects from JSON files</a></li> -->
+				</ul>
+				
+	
+			</div>
+		</div>
+	</nav>
+
+<!-- End of Navbar -->
+
+        <h1 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</h1>
+        <form th:action="@{/logout}" method="post">
+            <input type="submit" value="Sign Out"/>
+        </form>
+    </body>
+</html>

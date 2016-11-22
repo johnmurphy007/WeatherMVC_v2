@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+		xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head th:include="layout :: htmlhead" th:with="title='Edit User Profile'"></head>
+
+<body>
+
+	<div th:replace="layout :: navbar">(navbar)</div>
+
+<div class="container">
+      <a href="#" th:href="@{'http://localhost:9080/homepage'}" class="btn btn-primary">Home Page</a>
+			<h3>Valued Member since <span th:text="${#dates.format(edituser.datejoined,'dd MMM yyyy')}">(unknown)</span></h3>
+		<div class="table-responsive">
+			<table class="table">
+				<thead>
+					<tr>
+						<th>User Name</th>
+							<th>Account Status</th>
+							<th>Authority</th>
+						<th>Address 1</th>
+						<th>Address 2</th>
+						<th>Address 3</th>
+						<th>E-mail</th>
+						<th>Age</th>
+					</tr>
+				</thead>
+				<tbody>
+				<tr>
+						<td th:text="${edituser.username}"></td>
+						<td th:text="${edituser.accountstatus}"></td>
+						<td th:text="${edituser.authority}"></td>
+						<td th:text="${edituser.address1}"></td>
+						<td th:text="${edituser.address2}"></td>
+						<td th:text="${edituser.address3}"></td>
+						<td th:text="${edituser.email}"></td>
+							<td th:text="${edituser.age}"></td>
+					<!-- 	<td><a th:href="@{/songwriter/modify/id/}+${user.id}"
+							class="ui-btn">Modify</a></td> -->
+
+					</tr>
+				</tbody>
+			</table>
+		</div>
+
+ <h3 ><a color="RED" th:text="${message}"></a></h3>
+ <p> </p>
+		<form action="#" method="post" th:object="${edituser}" th:action="@{'http://localhost:9080/admin/listallusers/'+${id}}" role="form">
+	<div class="form-group">
+			<h3>Update the fields below:</h3>
+
+				<label for="accountStatus"> Account Status (Enabled/Disabled) : </label>
+				<input type="checkbox" name="accountstatus" th:field="*{accountstatus}"/>
+				  <p><label>[Note: User will lose log-in access to site if Account Status is disabled]</label></p>
+            <p> </p>
+           
+            <label> Current Authority Status: </label>
+            	<input type="text" name="authority" th:disabled="true" th:field="*{authority}" placeholder="Select Authority Level"/>
+            <label>   Select New Authority Status: </label>
+           <select th:field="*{authority}">
+  <option th:each="type : ${authorities}" 
+          th:value="${type.authority}" 
+          th:text="${'SELECT ' + type.authority}">Wireframe</option>
+</select>
+   <p> </p>
+      <p> </p>
+      
+   <div class="row">
+	<div class="col-md-6"> <label> User name: </label></div>
+	<div class="col-md-6"> <label> Email: </label></div> 
+</div>
+
+<div class="row">
+	<div class="col-md-6"><input class="form-control" type="text" name="username" th:field="*{username}" placeholder="Enter Username (Required)"/></div> 
+	<div class="col-md-6"><input class="form-control" type="email" name="email" th:field="*{email}" placeholder="Enter E-mail address (Required)"/></div> 
+</div>
+
+   <p> </p>
+      <p> </p>
+</div>
+  <div class="row">
+	<div class="col-md-6">    <label> Email: </label></div>
+	<div class="col-md-6"> <label> Age: </label></div> 
+</div>
+ 
+<div class="row">
+	<div class="col-md-6"><input class="form-control" type="text" name="datejoined" th:field="*{datejoined}" placeholder="Enter Date"/></div> 
+	<div class="col-md-6"><input class="form-control" type="number" name="age" th:field="*{age}" placeholder="Enter Age"/> </div> 
+</div>
+   <p> </p>
+      <p> </p>
+   <div class="row">
+	<div class="col-md-4">  <label> Address 1: </label></div>
+	<div class="col-md-4">  <label> Address 2: </label></div> 
+	<div class="col-md-4">  <label> Address 3: </label></div> 
+</div>
+<div class="row">
+	<div class="col-md-4"><input class="form-control" type="text" name="address1" th:field="*{address1}" placeholder="Enter House Number/Location"/></div> 
+	<div class="col-md-4"><input class="form-control" type="text" name="address2" th:field="*{address2}" placeholder="Enter Town/City"/></div> 
+	<div class="col-md-4"><input class="form-control" type="text" name="address3" th:field="*{address3}" placeholder="Enter County"/></div> 
+	</div>
+    <!--           <p> </p>
+            <label> User name: </label>
+            	<input class="form-control" type="text" name="username" th:field="*{username}" placeholder="Enter Username (Required)"/>
+            	 <label> Date: </label>
+            	<input class="form-control" type="text" name="datejoined" th:field="*{datejoined}" placeholder="Enter Date"/>
+ 
+            <p> </p>
+            <label> Address 1: </label>
+            	<input class="form-control" type="text" name="address1" th:field="*{address1}" placeholder="Enter House Number/Location"/>
+            <p> </p>
+                   <label> Address 2: </label>
+            	<input class="form-control" type="text" name="address2" th:field="*{address2}" placeholder="Enter Town/City"/>
+             <p></p>    
+                  <label> Address 3: </label>
+            	<input class="form-control" type="text" name="address3" th:field="*{address3}" placeholder="Enter County"/>
+            <p> </p>
+                   <label> Email: </label>
+            	<input class="form-control" type="email" name="email" th:field="*{email}" placeholder="Enter E-mail address (Required)"/>
+            <p> </p>
+            <label> Age: </label>
+            	<input class="form-control" type="number" name="age" th:field="*{age}" placeholder="Enter Age"/> 
+              <p> </p>
+        
+         -->
+            <p> </p>
+
+   <!--      <div class="row"> -->
+                  
+            <input   type="submit" class="btn btn-primary" value="Edit Profile"  th:value="'Edit Profile'"/>
+         
+    
+</form>
+
+
+<!-- 		<div class="container">
+			<h2>Enter the details to modify the Songwriter</h2>
+
+
+			<form th:object="user" role="form">
+
+				<div class="form-group">
+					<label for="profilename" th:text="#{modifyuser.profilename}"
+						class="control-label"></label> <input type="text"
+						th:value="${user.profilename}" id="profilename" th:disabled="true"
+						class="form-control" />
+				</div>
+
+				<div class="form-group">
+					<label for="address1" th:text="#{modifyuser.address1}"
+						class="control-label"></label> <input type="text"
+						id="disabledTextInput" th:value="${user.address2}"
+						th:disabled="true" class="form-control" />
+				</div>
+
+				<div class="form-group">
+					<label for="email" th:text="#{modifyuser.email}"
+						class="control-label"></label> <input type="email"
+						id="disabledTextInput" th:value="${user.email}"
+						th:disabled="true" class="form-control" />
+				</div>
+
+				<div class="form-group">
+					<label for="age" th:text="#{modifyuser.age}"
+						class="control-label"></label> <input type="number"
+						th:value="${user.age}" id="age" class="form-control" />
+				</div>
+
+
+				<div class="form-actions">
+					<input type="button" value="Modify" id="modify" class="ui-button" />
+				</div>
+			</form>
+		</div> -->
+	
+</div>
+
+
+</body>
+</html>

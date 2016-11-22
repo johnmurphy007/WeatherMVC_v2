@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head th:include="layout :: htmlhead" th:with="title='Display All Images'"></head>
+
+<body>
+
+	<div th:replace="layout :: navbar">(navbar)</div>
+		
+		
+<!-- 		<nav class="navbar navbar-default">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a class="navbar-brand">Select Browsing Options</a>
+			</div>
+			<div>
+				<ul class="nav navbar-nav">
+					<li><a href="http://localhost:9080/browse/listall/objects/1/10">View all Objects</a></li>
+					<li><a href="http://localhost:9080/browse/listall/roles">View all Roles</a></li>
+					<li><a href="http://localhost:9080/browse/listall/participants">View all Participants</a></li>
+					<li class="active"><a href="http://localhost:9080/browse/listall/images">View all Images</a></li>
+				</ul> -->
+<!-- 								<ul class="nav navbar-nav navbar-right">
+					<li><a href="http://localhost:9080/newuser"><span
+							class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+					<li><a href="http://localhost:9080/login"><span
+							class="glyphicon glyphicon-log-in"></span> Login</a></li>
+				</ul> -->
+<!-- 			</div>
+		</div>
+	</nav> -->
+
+	<!-- End of Navbar -->
+
+<div class="container">
+<!--   <h2>Pagination</h2>-->  
+<!--   <span th:text = "'The number of rows displayed per page is: '+${pageSize}+'  The current page is: '+${pageNo}"></span>     -->            
+  <ul class="pagination">    
+    <li><a th:href="@{'http://localhost:9080/browse/listall/objects/'+(${pageNo}-1)+'/'+${pageSize}}">«</a></li>
+    <li><a th:href="@{'http://localhost:9080/browse/listall/objects/'+${pageNo}+'/'+${pageSize}}"><span th:text = "${pageNo}"></span> </a></li>
+    <li><a th:href="@{'http://localhost:9080/browse/listall/objects/'+(${pageNo}+1)+'/'+${pageSize}}"><span th:text = "(${pageNo}+1)"></span></a></li>
+    <li><a th:href="@{'http://localhost:9080/browse/listall/objects/'+(${pageNo}+2)+'/'+${pageSize}}"><span th:text = "(${pageNo}+2)"></span></a></li>
+    <li><a th:href="@{'http://localhost:9080/browse/listall/objects/'+(${pageNo}+3)+'/'+${pageSize}}"><span th:text = "(${pageNo}+3)"></span></a></li>
+    <li><a th:href="@{'http://localhost:9080/browse/listall/objects/'+(${pageNo}+4)+'/'+${pageSize}}"><span th:text = "(${pageNo}+4)"></span></a></li>
+     <li><a th:href="@{'http://localhost:9080/browse/listall/objects/'+(${pageNo}+1)+'/'+${pageSize}}">»</a></li>
+  </ul>
+</div>
+
+<div class="table-responsive">
+<table class="table">
+<!-- <table> -->
+ <tr th:each="object : ${images}">
+      <td th:text="${object.url}"></td>
+      <td th:text="${object.width}"></td>
+      <td th:text="${object.height}"></td>
+      <td th:text="${object.is_primary}"></td>
+      <td th:text="${object.image_id}"></td>
+      <td th:text="${object.chObjectId}"></td>                  
+</tr>
+</table>
+</div>
+</body>
+</html>

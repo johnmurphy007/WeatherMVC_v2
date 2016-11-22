@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" 
+xmlns:th="http://www.thymeleaf.org">
+<head>
+<!--  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css"/>-->
+<link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" />
+<link type="text/css" rel="stylesheet" href="/css/bootstrap-theme.min.css" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Insert title here</title>
+</head>
+<body>
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">Cooper-Hewitt Design Museum</a>
+    </div>
+    <div>
+      <ul class="nav navbar-nav">
+        <li><a href="objects">View all objects</a></li>
+        <li><a href="roles">View all Roles</a></li>
+        <li><a href="participants">View all Participants</a></li>
+        <li><a href="images">View all Images</a></li>
+        <li><a href="users">View my Profile</a></li>
+        <li class="active"><a href="profiles">Create new profile</a></li>
+      </ul>
+    </div>
+    
+    </div>
+</nav>
+<div class="table-responsive">
+<table class="table">
+<!-- <table> -->
+ <tr th:each="object : ${user}">
+      <td th:text="${object.username}"></td>
+      <td th:text="${object.password}"></td>
+      <td th:text="${object.profilename}"></td>
+      <td th:text="${object.email}"></td>
+</tr>
+</table>
+</div>
+<div><label> Please enter a user name : <input type="text" name="username"/> </label></div>
+            <div><label> Password: <input type="password" name="password"/> </label></div>
+            <div><label> Profile name: <input type="text" name="profilename"/> </label></div>
+            <div><label> How old are you?: <input type="text" name="age"/> </label></div>
+            <div><label> Please enter your email: <input type="text" name="email"/> </label></div>
+            <div><input type="submit" value="Create New Profile"/></div>
+
+</body>
+</html>

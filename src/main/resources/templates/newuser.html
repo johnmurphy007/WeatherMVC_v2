@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+		xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head th:include="layout :: htmlhead" th:with="title='Display all Objects'"></head>
+
+<body>
+
+	<div th:replace="layout :: navbar">(navbar)</div>
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">Cooper-Hewitt Design Museum</a>
+    </div>
+    <div>
+      <ul class="nav navbar-nav">
+        <li><a href="objects">View all objects</a></li>
+        <li><a href="roles">View all Roles</a></li>
+        <li><a href="participants">View all Participants</a></li>
+        <li><a href="images">View all Images</a></li>
+      </ul>
+    </div>
+    
+    </div>
+</nav>
+<div class="container">
+<form action="#" method="post" th:object="${users}" th:action="@{'http://localhost:9080/newuser'}" role="form">
+	<div class="form-group">
+			
+
+				<label for="username"> User name : </label>
+				<input class="form-control"  type="text" name="username" th:field="*{username}" placeholder="Enter User Name (Required)"/> 
+            <p> </p>
+           
+            <label> Password: </label>
+            	<input class="form-control" type="password" name="password" th:field="*{password}" placeholder="Enter Password (Required)"/>
+              <p> </p>
+            <label> Profile name: </label>
+            	<input class="form-control" type="text" name="profilename" th:field="*{profilename}" placeholder="Enter Profile Name (Required)"/>
+            <p> </p>
+            <label> Address 1: </label>
+            	<input class="form-control" type="text" name="address1" th:field="*{address1}" placeholder="Enter House Number/Location"/>
+            <p> </p>
+                   <label> Address 2: </label>
+            	<input class="form-control" type="text" name="address2" th:field="*{address2}" placeholder="Enter Town/City"/>
+             <p></p>    
+                  <label> Address 3: </label>
+            	<input class="form-control" type="text" name="address3" th:field="*{address3}" placeholder="Enter County"/>
+            <p> </p>
+                   <label> Email: </label>
+            	<input class="form-control" type="email" name="email" th:field="*{email}" placeholder="Enter E-mail address (Required)"/>
+            <p> </p>
+            <label> Age: </label>
+            	<input class="form-control" type="number" name="age" th:field="*{age}" placeholder="Enter Age"/> 
+            	
+              <p> </p>
+            <input   type="submit" class="btn btn-info btn-sm" value="Create New Profile"  th:value="'Create New Profile'"/>
+    </div>
+</form>
+<!-- 
+					<form action="#" method="post" th:object="${crowdsourcing}" th:action="@{'http://localhost:9080/crowdsource/'+${object.id}}" role="form">
+						<div class="form-group">
+							<label for="comment">Update Description:</label>
+							<input type="text" th:field="*{description}" placeholder="Enter New Description"/>
+							<textarea class="form-control" rows="5" id="comment" th:field="*{description}" placeholder="Enter New Description" ></textarea>
+							<input type="submit" th:value="#{displayItemCS.updateDescription}"/>
+						</div>
+					</form>
+ -->
+</div>
+
+
+</body>
+</html>

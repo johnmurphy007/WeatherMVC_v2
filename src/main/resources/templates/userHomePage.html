@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head th:include="layout :: htmlhead" th:with="title='Home Page'"></head>
+
+
+<body>
+	<div th:replace="layout :: navbar">(navbar)</div>
+
+
+	<nav class="navbar navbar-default">
+		<div class="container-fluid">
+			<div>	
+				<ul class="nav navbar-nav">
+<!-- 								<li><a th:href="@{#{home.url}+'/editprofile/'+${user.username}}">Edit Profile</a></li>
+					<li><a th:href="@{#{home.url}+'/league/'+${user.username}}">League Table</a></li>
+					<li><a th:href="@{#{home.url}+'/league/viewpoints/'+${user.username}}">View Gamification Points</a></li>
+					<li><a th:href="@{#{home.url}+'/follow/'+${user.username}}">Following/Follower</a></li>
+					<li><a th:href="@{#{home.url}+'/gamification/'+${user.username}}">My Gamification History?</a></li> -->
+					<li><a th:href="@{#{home.url}+'/editprofile'}">Edit My Profile</a></li>
+					<li><a th:href="@{#{home.url}+'/league'}">League Table</a></li>
+					<li><a th:href="@{#{home.url}+'/league/viewpoints'}">View Gamification Points</a></li>
+					<!-- <li><a th:href="@{#{home.url}+'/follow'}">Following/Follower</a></li> -->
+					<li><a th:href="@{#{home.url}+'/gamification'}">My Gamification History</a></li>
+				</ul>
+			</div>
+
+		</div>
+	</nav>
+
+<!-- DISPLAY FOR ADMIN (REF: Chapter 15: http://docs.spring.io/spring-security/site/docs/3.0.x/reference/el-access.html) -->
+	<div sec:authorize="hasRole('ADMIN')">
+
+		<nav class="navbar navbar-default">
+			<div class="container-fluid">
+				<div>
+					<ul class="nav navbar-nav">
+
+						<li><a
+							th:href="@{#{home.url}+'/admin/listallusers'}">
+								All Users Details</a></li>
+		
+						<li><a
+							th:href="@{#{home.url}+'/admin/flaggedcomments'}">
+								View All Flagged Comments</a></li>
+						<li><a
+							th:href="@{#{home.url}+'/admin/flaggeddescriptions'}">
+								View All Flagged Crowdsourcing Descriptions</a></li>
+						<li><a
+							th:href="@{#{home.url}+'/admin/gametype/viewpoints'}">
+								Set Gamification Points</a></li>
+						<li><a
+							th:href="@{#{home.url}+'/import'}">
+								Import JSON files (from local directory only)</a></li>
+
+					</ul>
+			
+				</div>
+
+			</div>
+		</nav>
+
+	</div>
+<div class="container">
+	<h2>Welcome <span th:text="${user.username}"></span></h2>
+<!-- 		<h2>Welcome</h2> -->
+		<h3>Member since <span th:text="${#dates.format(user.datejoined,'dd MMM yyyy')}">(unknown)</span></h3>
+	</div>
+</body>
+</html>

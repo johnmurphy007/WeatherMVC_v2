@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+		xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head th:include="layout :: htmlhead" th:with="title='Display an Object'"></head>
+
+<body>
+
+	<div th:replace="layout :: navbar">(navbar)</div>
+		
+	
+
+	<div class="container">
+	
+	
+	<div class="row">
+		<div class="col-sm-8">
+					
+					
+	<!-- GAMIFICATION TABLE SECTION -->
+	<a href="#" th:href="@{'http://localhost:9080/homepage'}" class="btn btn-primary">Home Page</a>
+					<h3><b>Gamification Points for <span th:text="${user.username}"></span></b></h3>
+					<h4>Points total is <span th:text="${usergamepoints}"></span></h4>
+	
+			<div class="table-responsive">
+				<table class="table">
+		 	<div class="row">
+					<div class="col-xs-1"><b><i>#</i></b></div>
+				<!-- 	<div class="col-xs-3"><b><i>User Name</i></b></div> -->
+					<div class="col-xs-4"><b><i>Game Type</i></b></div>
+					<div class="col-xs-2"><b><i>Date</i></b></div>
+						<div class="col-xs-2"><b><i>Museum Object</i></b></div>
+					<div class="col-xs-2"><b><i>Points</i></b></div>
+			</div>
+				<tr th:each="c : ${usergame}">
+				 	<div class="row"> 
+					<div class = "col-sm-1" th:text="${cStat.count}">Count</div>
+				<!-- 	<div class = "col-sm-3" th:text="${c.user.username}">Comment</div> -->
+					<div class = "col-sm-4" th:text="${c.gametype.gamename}">User</div>
+					<div class = "col-sm-2" th:text="${#dates.format(c.datestamp,'dd MMM yyyy')}">Datestamp</div>	
+					<div class = "col-sm-2"><a th:text="${c.chobject_id}" th:href="@{'http://localhost:9080/object/'+${c.chobject_id}}">User</a></div>
+					<div class = "col-sm-2" th:text="${c.gamepoints}">User</div>
+			 </div>
+				</tr>
+		
+				</table>
+			</div>
+			
+		<!-- 	<h4>Your points are <span th:text="${usergamepoint}"></span> </h4>
+			<h4>Your position number is <span th:text="${userposition}"></span> </h4> -->
+ 			
+ 			<!-- CENTERING HOME PAGE BUTTON -->
+ 			<div class="row">
+					<div class="col-xs-5"></div>
+			<div class="col-xs-2"><a href="#" th:href="@{'http://localhost:9080/homepage'}" class="btn btn-primary">Home Page</a> </div>
+					<div class="col-xs-5"></div>
+					</div>
+	</div>
+
+	</div>
+	</div> <!-- end of container-fluid -->
+
+</body>
+</html>

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+		xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head th:include="layout :: htmlhead" th:with="title='Display all Objects'"></head>
+
+<body>
+
+	<div th:replace="layout :: navbar">(navbar)</div>
+
+
+	<!-- <nav class="navbar navbar-default">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a class="navbar-brand">Select Browsing Options</a>
+			</div>
+			<div>
+				<ul class="nav navbar-nav">
+					<li class="active"><a
+						th:href="@{'http://localhost:9080/browse/listall/objects/1/10'}">View all
+							Objects</a></li>
+					<li><a href="http://localhost:9080/browse/listall/roles">View
+							all Roles</a></li>
+					<li><a
+						href="http://localhost:9080/browse/listall/participants">View
+							all Participants</a></li>
+					<li><a href="http://localhost:9080/browse/listall/images">View
+							all Images</a></li>
+				</ul>
+	
+			</div>
+		</div>
+	</nav> -->
+
+	<!-- End of Navbar -->
+<div class="container">
+<!--   <h2>Pagination</h2>-->  
+  <!-- <span th:text = "'The number of rows displayed per page is: '+${pageSize}+'  The current page is: '+${pageNo}"></span>     -->     
+  
+
+         
+  <ul class="pagination">   
+  	<li><a th:href="@{#{home.url}+'/browse/'+${searchtype}+'/1/'+${pageSize}+'/'+${searchcriteria}}">First Page</a></li> 
+	
+	<li><span th:switch="${pageNo} &lt; 2">
+		<a th:case="true" th:href="@{#{home.url}+'/browse/'+${searchtype}+'/1/'+${pageSize}+'/'+${searchcriteria}}">«</a>
+		<a th:case="false" th:href="@{#{home.url}+'/browse/'+${searchtype}+'/'+(${pageNo}-1)+'/'+${pageSize}+'/'+${searchcriteria}}">«</a>
+	</span></li>
+    <li><a th:href="@{#{home.url}+'/browse/'+${searchtype}+'/'+${pageNo}+'/'+${pageSize}+'/'+${searchcriteria}}"><span th:text = "${pageNo}"></span> </a></li>
+    <li>
+    <span th:switch="(${pageNo}+1)>${countpages}">
+		<a th:case="true"></a> <!-- th:href="@{'http://localhost:9080/browse/listall/objects/1/'+${pageSize}}" -->
+		<a th:case="false" th:href="@{#{home.url}+'/browse/'+${searchtype}+'/'+(${pageNo}+1)+'/'+${pageSize}+'/'+${searchcriteria}}"><span th:text = "(${pageNo}+1)"></span></a>
+		</span></li>
+    <li>
+      <span th:switch="(${pageNo}+2)>${countpages}">
+      	<a th:case="true"></a>
+   		<a th:case="false" th:href="@{#{home.url}+'/browse/'+${searchtype}+'/'+(${pageNo}+2)+'/'+${pageSize}+'/'+${searchcriteria}}"><span th:text = "(${pageNo}+2)"></span></a>
+   		</span></li>
+    <li>
+      <span th:switch="(${pageNo}+3)>${countpages}">
+      	<a th:case="true"></a>
+    	<a th:case="false"  th:href="@{#{home.url}+'/browse/'+${searchtype}+'/'+(${pageNo}+3)+'/'+${pageSize}+'/'+${searchcriteria}}"><span th:text = "(${pageNo}+3)"></span></a>
+    	</span></li>
+    <li>
+      <span th:switch="(${pageNo}+4)>${countpages}">
+      	<a th:case="true"></a>
+    	<a th:case="false"  th:href="@{#{home.url}+'/browse/'+${searchtype}+'/'+(${pageNo}+4)+'/'+${pageSize}+'/'+${searchcriteria}}"><span th:text = "(${pageNo}+4)"></span></a>
+    	</span></li>
+    	
+     <li>
+          <span th:switch="(${pageNo}+1)>${countpages}">
+           	<a th:case="true" th:href="@{#{home.url}+'/browse/'+${searchtype}+'/'+(${countpages})+'/'+${pageSize}+'/'+${searchcriteria}}">»</a>
+     		<a th:case="false" th:href="@{#{home.url}+'/browse/'+${searchtype}+'/'+(${pageNo}+1)+'/'+${pageSize}+'/'+${searchcriteria}}">»</a>
+     		</span></li>
+     <li><a th:href="@{#{home.url}+'/browse/'+${searchtype}+'/'+${countpages}+'/'+${pageSize}+'/'+${searchcriteria}}">Last Page</a></li> 
+  </ul>
+</div>
+
+
+	<div class="table-responsive">
+		<table class="table table-striped table-hover table-bordered">
+			<!-- <table> -->
+			<thead>
+				<tr>
+					<th>Object id</th>
+					<th>Title</th>
+					<th>Date</th>
+					<th>Credit Line</th>
+					<th>Description</th>
+					<th>Gallery Text</th>
+					<th>View Object</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="object : ${objects}">
+					<td th:text="${object.id}"></td>
+					<td th:text="${object.title}"></td>
+					<td th:text="${object.date}"></td>
+					<td th:text="${object.creditline}"></td>
+					<td th:text="${object.description}"></td>
+					<td th:text="${object.gallery_text}"></td>
+					<td>
+						<!-- <form action="#" method="post" th:object="${chObject}" th:action="@{'http://localhost:9080/object/'+${object.id}}" role = "form">
+      <input type = "submit" value="View Object" /></form></td> --> 
+      <a th:href="@{'http://localhost:9080/object/'+${object.id}}"
+						class="btn btn-primary btn-sm">View Object</a>
+					</td>
+										
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</body>
+</html>

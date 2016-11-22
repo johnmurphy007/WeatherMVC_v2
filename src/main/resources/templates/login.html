@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+		xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head th:include="layout :: htmlhead" th:with="title='User Login'"></head>
+
+
+<body>
+	<div th:replace="layout :: navbar">(navbar)</div>
+
+
+
+
+	<div class="container">
+		<!-- <h2>Vertical (basic) Form</h2> -->
+
+		<!--   Thymeleaf 'if' statement that is executed if they are present in the response parameters during rendering -->
+		<div th:if="${param.error}">Invalid username and password.</div>
+
+		<!--   Thymeleaf 'if' statement that is executed if they are present in the response parameters during rendering -->
+		<div th:if="${param.logout}">You have been logged out.</div>
+
+		<!--   Thymeleaf: path to this page is "/login" and action on this form routes back to "/login" -->
+<!-- 		<form role="form" th:action="@{/userHomePage}" method="post"> -->
+
+			<form role="form" th:action="@{/login}" method="post">
+			<div class="form-group"> <!-- form-group used for optimal spacing -->
+				<label for="username">User Name: (currently can use "user"
+					or "admin" and "password") : <input type="text"
+					class="form-control" name="username" placeholder="Enter name"></input>
+				</label>
+			</div>
+			<div class="form-group">
+				<label for="password">Password: <input type="password"
+					class="form-control" name="password" placeholder="Enter password"></input></label>
+			</div>
+<!-- 			<div class="checkbox"> -->
+<!-- 				<label><input type="checkbox"> Remember me</input></label> -->
+<!-- 			</div> -->
+			<button type="submit" class="btn btn-default">Sign In</button>
+
+		</form>
+	</div>
+
+</body>
+</html>
+
+
+
+<!--  OLD VERSION (Keeping here just in case!) 
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+ <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css"/>
+<link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" />
+<link type="text/css" rel="stylesheet"
+	href="/css/bootstrap-theme.min.css" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Display One Cultural Heritage Object</title>
+</head>
+
+
+<body>
+	<nav class="navbar navbar-default">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="http://localhost:9080/home">Cooper-Hewitt Design Museum</a>
+			</div>
+			<div>
+				<ul class="nav navbar-nav">
+					<li class="active"><a href="http://localhost:9080/browse/listall/objects">View all objects</a></li>
+					<li><a href="http://localhost:9080/browse/listall/roles">View all Roles</a></li>
+					<li><a href="http://localhost:9080/browse/listall/participants">View all Participants</a></li>
+					<li><a href="http://localhost:9080/browse/listall/images">View all Images</a></li>
+					        <li><a href="import">View all CHObjects from JSON files</a></li>
+				</ul>
+				
+				<ul class="nav navbar-nav navbar-right">
+					<li><a href="http://localhost:9080/login"><span
+							class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+					<li><a href="http://localhost:9080/login"><span
+							class="glyphicon glyphicon-log-in"></span> Login</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+
+End of Navbar
+    
+  Thymeleaf 'if' statement that is executed if they are present in the response parameters during rendering
+        <div th:if="${param.error}"> 
+            Invalid username and password.
+        </div>
+
+  Thymeleaf 'if' statement that is executed if they are present in the response parameters during rendering        
+        <div th:if="${param.logout}">
+            You have been logged out.
+        </div>
+
+  Thymeleaf: path to this page is "/login" and action on this form routes back to "/login"
+        <form th:action="@{/login}" method="post">
+            <div><label> User Name ("user" or "admin") : <input type="text" name="username"/> </label></div>
+            <div><label> Password ("password"): <input type="password" name="password"/> </label></div>
+            <div><input type="submit" value="Sign In"/></div>
+        </form>
+    </body>
+</html> -->

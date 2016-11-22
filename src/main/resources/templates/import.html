@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+		xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head th:include="layout :: htmlhead" th:with="title='Display an Object'"></head>
+
+<body>
+
+	<div th:replace="layout :: navbar">(navbar)</div>
+		
+	
+
+	<div class="container-fluid">
+	
+	
+
+	
+					
+	
+	<a href="#" th:href="@{'http://localhost:9080/homepage'}" class="btn btn-primary">Admin Home Page</a>
+					<h3><b>Import Smithsonian JSON files from Local Directory</b></h3>
+					<h4><b>This facility is being provided as a convenience only (it may not be a good security idea!)</b></h4>
+
+
+	
+
+	<h2><font color="red"><span th:text="${message}"></span></font></h2>
+
+            <label> Input the root folder directory you wish to import JSON files from </label>
+           <label> E.g. for a MAC this could be: "/Users/john/Documents/Git/Smithsonian/collection/objects/682/683/"</label>
+  
+  <form action="#" method="post" th:object="${directory}" th:action="@{'http://localhost:9080/import'}" role="form">
+	<div class="form-group">
+ 
+        <input class="form-control" type="text" name="import" th:field="*{string1}" placeholder="Enter Root Folder Directory location"/>
+            <input   type="submit" class="btn btn-primary" value="Import"  th:value="'Import'"/>
+    </div>
+</form>
+  
+      <!-- <input id="importdirectory" class="form-control" type="text" name="import" placeholder="Enter Root Folder Directory location"/> -->
+   
+
+	
+	
+	</div> <!-- end of container-fluid -->
+
+</body>
+</html>

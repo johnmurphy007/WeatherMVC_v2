@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head th:include="layout :: htmlhead" th:with="title='Display all Roles'"></head>
+
+<body>
+
+	<div th:replace="layout :: navbar">(navbar)</div>
+		
+		
+<!-- 		<nav class="navbar navbar-default">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a class="navbar-brand">Select Browsing Options</a>
+			</div>
+			<div>
+				<ul class="nav navbar-nav">
+					<li ><a href="http://localhost:9080/browse/listall/objects/1/10">View all Objects</a></li>
+					<li class="active"><a href="http://localhost:9080/browse/listall/roles">View all Roles</a></li>
+					<li><a href="http://localhost:9080/browse/listall/participants">View all Participants</a></li>
+					<li><a href="http://localhost:9080/browse/listall/images">View all Images</a></li>
+				</ul>
+
+			</div>
+		</div>
+	</nav> -->
+
+	<!-- End of Navbar -->
+<div class="container">
+<!--   <h2>Pagination</h2>-->  
+<!--   <span th:text = "'The number of rows displayed per page is: '+${pageSize}+'  The current page is: '+${pageNo}"></span>       -->          
+  
+  <ul class="pagination">   
+  	<li><a th:href="@{#{home.url}+'/browse/listall/roles/1/'+${pageSize}}">First Page</a></li> 
+	
+	<li><span th:switch="${pageNo} &lt; 2">
+		<a th:case="true" th:href="@{#{home.url}+'/browse/listall/roles/1/'+${pageSize}}">«</a>
+		<a th:case="false" th:href="@{#{home.url}+'/browse/listall/roles/'+(${pageNo}-1)+'/'+${pageSize}}">«</a>
+	</span></li>
+    <li><a th:href="@{#{home.url}+'/browse/listall/roles/'+${pageNo}+'/'+${pageSize}}"><span th:text = "${pageNo}"></span> </a></li>
+    <li>
+    <span th:switch="(${pageNo}+1)>${countpages}">
+		<a th:case="true"></a> <!-- th:href="@{'http://localhost:9080/browse/listall/objects/1/'+${pageSize}}" -->
+		<a th:case="false" th:href="@{'http://localhost:9080/browse/listall/roles/'+(${pageNo}+1)+'/'+${pageSize}}"><span th:text = "(${pageNo}+1)"></span></a>
+		</span></li>
+    <li>
+      <span th:switch="(${pageNo}+2)>${countpages}">
+      	<a th:case="true"></a>
+   		<a th:case="false" th:href="@{#{home.url}+'/browse/listall/roles/'+(${pageNo}+2)+'/'+${pageSize}}"><span th:text = "(${pageNo}+2)"></span></a>
+   		</span></li>
+    <li>
+      <span th:switch="(${pageNo}+3)>${countpages}">
+      	<a th:case="true"></a>
+    	<a th:case="false"  th:href="@{#{home.url}+'/browse/listall/roles/'+(${pageNo}+3)+'/'+${pageSize}}"><span th:text = "(${pageNo}+3)"></span></a>
+    	</span></li>
+    <li>
+      <span th:switch="(${pageNo}+4)>${countpages}">
+      	<a th:case="true"></a>
+    	<a th:case="false"  th:href="@{#{home.url}+'/browse/listall/roles/'+(${pageNo}+4)+'/'+${pageSize}}"><span th:text = "(${pageNo}+4)"></span></a>
+    	</span></li>
+    	
+     <li>
+          <span th:switch="(${pageNo}+1)>${countpages}">
+           	<a th:case="true" th:href="@{#{home.url}+'/browse/listall/roles/'+(${countpages})+'/'+${pageSize}}">»</a>
+     		<a th:case="false" th:href="@{#{home.url}+'/browse/listall/roles/'+(${pageNo}+1)+'/'+${pageSize}}">»</a>
+     		</span></li>
+     <li><a th:href="@{#{home.url}+'/browse/listall/roles/'+${countpages}+'/'+${pageSize}}">Last Page</a></li> 
+  </ul>
+  
+</div>
+
+<div class="container">
+<div class="table-responsive">
+<table class="table">
+<!-- <table> -->
+		 	<div class="row">
+					<div class="col-sm-1"><b><i>Role ID</i></b></div>
+					<div class="col-sm-11"><b><i>Role</i></b></div>
+			</div>
+ <tr th:each="object : ${roles}">
+ <div class="row">
+      <div class="col-sm-1" th:text="${object.role_id}"></div>
+      <div class="col-sm-11" th:text="${object.role_name}"></div>
+      </div>
+</tr>
+</table>
+</div>
+</div>
+</body>
+</html>
